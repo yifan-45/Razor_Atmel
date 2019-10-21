@@ -76,7 +76,7 @@ void main(void)
   UserApp3Initialize();
 
   
-  /* Exit initialization */
+  /* Exit initializationooooo */
   SystemStatusReport();
   G_u32SystemFlags &= ~_SYSTEM_INITIALIZING;
     
