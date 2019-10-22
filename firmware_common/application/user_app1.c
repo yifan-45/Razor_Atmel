@@ -87,7 +87,7 @@ Promises:
 */
 void UserApp1Initialize(void)
 {
- 
+
   /* If good initialization, set state to Idle */
   if( 1 )
   {
@@ -136,7 +136,25 @@ State Machine Function Definitions
 /* Wait for ??? */
 static void UserApp1SM_Idle(void)
 {
-
+ static u32 u32Counter=0; 
+ static  bool  blsLightOn=FALSE;
+    u32Counter++;
+   if(u32Counter==Counter_PERIOD_MS)
+   {
+     u32Counter=0;
+     blsLightOn=!blsLightOn;
+     
+     if(blsLightOn)
+     {  
+     HEARTBEAT_ON();
+     //blsLightOn=TRUE;
+     }
+     else
+     {
+     HEARTBEAT_OFF();
+     //blsLightOn=FALSE;
+     }
+   }
 } /* end UserApp1SM_Idle() */
     
 
