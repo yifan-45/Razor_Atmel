@@ -86,8 +86,19 @@ Promises:
   - 
 */
 void UserApp1Initialize(void)
-{
- 
+{ // LedOff(CYAN);
+  //LedOff(GREEN);
+// LedOff(YELLOW);
+// LedOff(ORANGE);
+
+    
+ //LedOn(BLUE);
+ //LedToggle(PURPLE);
+   LedBlink(RED,LED_8HZ);
+   LedBlink(GREEN,LED_4HZ);
+   LedBlink(BLUE,LED_2HZ);
+   LedBlink(WHITE,LED_1HZ);
+ //LedPWM(WHITE,LED_PWM_5);
   /* If good initialization, set state to Idle */
   if( 1 )
   {
