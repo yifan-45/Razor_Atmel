@@ -74,6 +74,14 @@ Promises:
 */
 void UserApp2Initialize(void)
 {
+   LedOff(CYAN);
+   LedOff(GREEN);
+   LedOff(YELLOW);
+   LedOff(ORANGE);
+   LedOff(RED);
+   LedOff(BLUE);
+   LedOff(WHITE);
+  // LedOff(PURPLR);
   /* If good initialization, set state to Idle */
   if( 1 )
   {
@@ -122,8 +130,66 @@ State Machine Function Definitions
 /* Wait for ??? */
 static void UserApp2SM_Idle(void)
 {
-    
-} /* end UserApp2SM_Idle() */
+   // static u32 u32IsCounter = 0;
+   // static u32 u32WasCounter = 0;
+ static   bool bIsYellowBlinking=FALSE;
+ static LedRateType eCurrentRate=LED_1HZ;
+   
+   if(IsButtonPressed(BUTTON0)) 
+    {
+    LedOn(BLUE);
+    }
+   else
+   {
+     LedOff(BLUE);
+   }
+   if(WasButtonPressed(BUTTON1) )
+   { 
+     ButtonAcknowledge(BUTTON1);
+     if(bIsYellowBlinking)
+     {
+       LedOff(RED);
+       bIsYellowBlinking=FALSE;
+     }
+   
+   else
+     {
+       LedBlink(RED,LED_8HZ);
+       bIsYellowBlinking=TRUE;
+     }
+   }
+   if(WasButtonPressed(BUTTON2) )
+   { 
+     ButtonAcknowledge(BUTTON2);
+     switch(eCurrentRate)
+     { 
+     case  LED_1HZ:
+      eCurrentRate=LED_2HZ;
+      break;
+      
+     case  LED_2HZ:
+      eCurrentRate=LED_4HZ;
+      break;
+      
+     case  LED_4HZ:
+      eCurrentRate=LED_8HZ;
+      break;
+      
+     case  LED_8HZ:
+      eCurrentRate=LED_1HZ;
+      break;
+      
+     default:
+      LedOn(WHITE);
+      break;
+     }
+   }
+       
+   /* if(WasButtonPressed(BUTTON0)) 
+   {  u32WasCounter++;
+      ButtonAcknowledge(BUTTON0);
+   }*/
+}/* end UserApp2SM_Idle() */
      
 #if 0
 /*-------------------------------------------------------------------------------------------------------------------*/
